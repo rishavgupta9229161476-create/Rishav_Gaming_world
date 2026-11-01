@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Main Menu | Rishav Gaming World</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
+                url("branden-skeli-qI1eL5b6lac-unsplash.jpg");
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+
+            color: white;
+            font-family: Arial, sans-serif;
+
+            min-height: 100vh;
+            margin: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Cinematic glass panel */
+        .menu-panel {
+            background: rgba(10, 10, 20, 0.5);
+            backdrop-filter: blur(8px);
+
+            border: 1px solid rgba(255, 50, 50, 0.6);
+            border-radius: 20px;
+
+            padding: 40px;
+            width: 70%;
+            max-width: 650px;
+
+            text-align: center;
+
+            box-shadow:
+                0 0 25px rgba(255, 0, 0, 0.2),
+                inset 0 0 20px rgba(255, 50, 50, 0.08);
+
+            animation: panelEntrance 1s ease both,
+                       panelFloat 5s ease-in-out 1s infinite;
+        }
+
+        /* Heading animation */
+        .menu-panel h1 {
+            color: #ff3030;
+            text-shadow:
+                0 0 12px #ff3030,
+                0 0 25px #ff0000;
+
+            animation: headingEntrance 1.2s ease both;
+        }
+
+        /* Button layout */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        /* Gaming buttons */
+        .menu-panel button {
+            background: linear-gradient(45deg, #ff0000, #ffcc00);
+            color: white;
+
+            padding: 15px 30px;
+            border: 2px solid #ffcc00;
+            border-radius: 12px;
+
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+
+            box-shadow:
+                0 0 12px #ff3300,
+                0 0 25px #ffcc00;
+
+            transition: all 0.3s ease;
+
+            animation: buttonEntrance 1s ease both;
+        }
+
+        .menu-panel button:nth-child(1) {
+            animation-delay: 0.5s;
+        }
+
+        .menu-panel button:nth-child(2) {
+            animation-delay: 0.8s;
+        }
+
+        .menu-panel button:hover {
+            transform: scale(1.1) translateY(-5px);
+
+            box-shadow:
+                0 0 18px #ff0000,
+                0 0 35px #ffcc00;
+
+            background: linear-gradient(45deg, #ffcc00, #ff0000);
+        }
+
+        .menu-panel button:active {
+            transform: scale(0.95);
+        }
+
+        /* Animations */
+        @keyframes panelEntrance {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes panelFloat {
+            0%, 100% {
+                translate: 0 0;
+            }
+
+            50% {
+                translate: 0 -8px;
+            }
+        }
+
+        @keyframes headingEntrance {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+                filter: blur(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes buttonEntrance {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile layout */
+        @media (max-width: 600px) {
+            .menu-panel {
+                width: 92%;
+                padding: 25px 15px;
+            }
+
+            .menu-panel h1 {
+                font-size: 25px;
+            }
+
+            .button-container {
+                gap: 20px;
+            }
+
+            .menu-panel button {
+                width: 100%;
+                font-size: 15px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    /* Mobile-only Welcome Background */
+@media (max-width: 600px) {
+    body {
+        background-image:
+            linear-gradient(
+                rgba(5, 5, 15, 0.30),
+                rgba(5, 5, 15, 0.45)
+            ),
+            url("menubgmob.jpg");
+
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+    }
+}
+    </style>
+</head>
+
+<body>
+
+    <div class="menu-panel">
+
+        <h1>🎮 Where You Want To Go 🎮</h1>
+
+        <div class="button-container">
+
+            <button onclick="window.location.href='games.html'">
+                🎮 GAME LIBRARY
+            </button>
+
+            <button onclick="window.location.href='about.html'">
+                👨‍💻 WHO AM I?
+            </button>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

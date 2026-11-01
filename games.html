@@ -1,0 +1,494 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rishav Gaming World</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 15px;
+            min-height: 100vh;
+            background: linear-gradient(
+                135deg,
+                #0b0f19,
+                #101b30,
+                #10251f,
+                #0b0f19
+            );
+            background-size: 300% 300%;
+            animation: gamingBackground 12s ease infinite;
+            color: white;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: clamp(25px, 5vw, 38px);
+            text-shadow: 0 0 12px #00ff88;
+            margin: 25px 0 12px;
+        }
+
+        .welcome {
+            color: #aab4c5;
+            text-align: center;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        h2 {
+            color: #00ff88;
+            text-align: center;
+            font-size: clamp(21px, 4vw, 26px);
+            margin: 35px 0 25px;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #151d2e;
+            width: fit-content;
+            max-width: 100%;
+            margin: 15px auto 25px;
+            padding: 13px 18px;
+            border: 1px solid #00ff88;
+            border-radius: 15px;
+            box-shadow: 0 0 12px rgba(0, 255, 136, 0.25);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px 22px;
+        }
+
+        nav a {
+            color: #00ff88;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 7px 5px;
+            transition: 0.3s ease;
+        }
+
+        nav a:hover {
+            color: white;
+            text-shadow: 0 0 10px #00ff88;
+        }
+
+        /* Responsive Game Grid */
+        .game-container {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(min(100%, 240px), 1fr)
+            );
+            gap: 22px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Game Cards */
+        .game-box {
+            background-color: #151d2e;
+            border: 1px solid #00ff88;
+            padding: 18px;
+            border-radius: 15px;
+            text-align: center;
+            min-width: 0;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.15);
+            animation: cardEntrance 0.8s ease both;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .game-image {
+            width: 100%;
+            height: 155px;
+            object-fit: contain;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .game-box h3 {
+            font-size: 19px;
+            line-height: 1.4;
+            overflow-wrap: anywhere;
+        }
+
+        .game-box:hover {
+            transform: translateY(-8px) scale(1.02);
+        }
+
+        .game-box:hover .game-image {
+            transform: scale(1.05);
+        }
+
+        /* Game Button */
+        .game-button {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 44px;
+            padding: 11px 18px;
+            margin-top: 10px;
+            background-color: #00ff88;
+            color: #0b0f19;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 5px rgba(0, 255, 136, 0.2);
+        }
+
+        .game-button:hover {
+            background-color: white;
+            color: #0b0f19;
+            box-shadow: 0 0 18px #00ff88;
+            transform: scale(1.05);
+        }
+
+        .game-button:active {
+            transform: scale(0.96);
+        }
+
+        /* Individual Game Themes */
+        .minecraft-card {
+            border-color: #55C95B;
+            box-shadow: 0 0 10px rgba(85, 201, 91, 0.3);
+        }
+        .minecraft-card h3 { color: #55C95B; }
+        .minecraft-card:hover { box-shadow: 0 0 22px rgba(85, 201, 91, 0.6); }
+
+        .gta-card {
+            border-color: #E8B84A;
+            box-shadow: 0 0 10px rgba(232, 184, 74, 0.3);
+        }
+        .gta-card h3 { color: #E8B84A; }
+        .gta-card:hover { box-shadow: 0 0 22px rgba(232, 184, 74, 0.6); }
+
+        .valorant-card {
+            border-color: #FF4655;
+            box-shadow: 0 0 10px rgba(255, 70, 85, 0.3);
+        }
+        .valorant-card h3 { color: #FF4655; }
+        .valorant-card:hover { box-shadow: 0 0 22px rgba(255, 70, 85, 0.6); }
+
+        .gta6-card {
+            border-color: #ff3b30;
+            box-shadow: 0 0 10px rgba(255, 59, 48, 0.3);
+        }
+        .gta6-card h3 { color: #ff3b30; }
+        .gta6-card:hover { box-shadow: 0 0 22px rgba(255, 59, 48, 0.7); }
+
+        .farcry-card {
+            border-color: #ff8c00;
+            box-shadow: 0 0 10px rgba(255, 140, 0, 0.3);
+        }
+        .farcry-card h3 { color: #ff8c00; }
+        .farcry-card:hover { box-shadow: 0 0 22px rgba(255, 140, 0, 0.7); }
+
+        .nfs-card {
+            border-color: #00bfff;
+            box-shadow: 0 0 10px rgba(0, 191, 255, 0.3);
+        }
+        .nfs-card h3 { color: #00bfff; }
+        .nfs-card:hover { box-shadow: 0 0 22px rgba(0, 191, 255, 0.7); }
+
+        .fifa-card {
+            border-color: #ffd700;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+        .fifa-card h3 { color: #ffd700; }
+        .fifa-card:hover { box-shadow: 0 0 22px rgba(255, 215, 0, 0.7); }
+
+        .tomb-card {
+            border-color: #00e5ff;
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+        }
+        .tomb-card h3 { color: #00e5ff; }
+        .tomb-card:hover { box-shadow: 0 0 22px rgba(0, 229, 255, 0.7); }
+
+        .god-card {
+            border-color: #d7263d;
+            box-shadow: 0 0 10px rgba(215, 38, 61, 0.3);
+        }
+        .god-card h3 { color: #d7263d; }
+        .god-card:hover { box-shadow: 0 0 22px rgba(215, 38, 61, 0.7); }
+
+        .cs2-card {
+            border-color: #f5a623;
+            box-shadow: 0 0 10px rgba(245, 166, 35, 0.3);
+        }
+        .cs2-card h3 { color: #f5a623; }
+        .cs2-card:hover { box-shadow: 0 0 22px rgba(245, 166, 35, 0.7); }
+
+        /* Card Entrance Animation */
+        @keyframes cardEntrance {
+            from {
+                opacity: 0;
+                transform: translateY(35px) scale(0.94);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .game-box:nth-child(1) { animation-delay: 0.1s; }
+        .game-box:nth-child(2) { animation-delay: 0.2s; }
+        .game-box:nth-child(3) { animation-delay: 0.3s; }
+        .game-box:nth-child(4) { animation-delay: 0.4s; }
+        .game-box:nth-child(5) { animation-delay: 0.5s; }
+        .game-box:nth-child(6) { animation-delay: 0.6s; }
+        .game-box:nth-child(7) { animation-delay: 0.7s; }
+        .game-box:nth-child(8) { animation-delay: 0.8s; }
+        .game-box:nth-child(9) { animation-delay: 0.9s; }
+        .game-box:nth-child(10) { animation-delay: 1s; }
+
+        /* Footer */
+        .info-bar {
+            background-color: #151d2e;
+            border-top: 1px solid #00ff88;
+            padding: 22px 15px;
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 18px 25px;
+            flex-wrap: wrap;
+            text-align: center;
+            box-shadow: 0 0 12px rgba(0, 255, 136, 0.15);
+            border-radius: 12px;
+        }
+
+        .info-bar a {
+            color: #00ff88;
+            text-decoration: none;
+            font-weight: bold;
+            overflow-wrap: anywhere;
+        }
+
+        .info-bar a:hover {
+            color: white;
+        }
+
+        /* Tablet */
+        @media (max-width: 768px) {
+            body {
+                padding: 12px;
+            }
+
+            .game-container {
+                gap: 16px;
+            }
+
+            .game-box {
+                padding: 15px;
+            }
+        }
+
+        /* Mobile Phones */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            nav {
+                width: 100%;
+                gap: 8px 15px;
+                padding: 12px 8px;
+            }
+
+            nav a {
+                font-size: 14px;
+            }
+
+            h1 {
+                margin-top: 22px;
+            }
+
+            .welcome {
+                font-size: 14px;
+            }
+
+            h2 {
+                margin-top: 28px;
+            }
+
+            .game-container {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .game-box {
+                padding: 16px;
+            }
+
+            .game-image {
+                height: 170px;
+            }
+
+            .game-box h3 {
+                font-size: 18px;
+            }
+
+            .game-button {
+                width: 100%;
+                min-height: 46px;
+            }
+
+            .info-bar {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        /* Reduce motion when requested by device */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+         
+/* Compact Mobile Game Cards */
+@media (max-width: 480px) {
+
+    .game-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .game-box {
+        padding: 10px;
+        border-radius: 12px;
+    }
+
+    .game-image {
+        height: 95px;
+    }
+
+    .game-box h3 {
+        font-size: 14px;
+        line-height: 1.3;
+        margin: 10px 0;
+    }
+
+    .game-button {
+        width: 100%;
+        min-height: 38px;
+        padding: 8px 5px;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+    </nav>
+
+    <h1>🎮 Game Collections 🎮</h1>
+    <p class="welcome">Welcome to my Gaming Universe!</p>
+
+    <h2>Top 10 Games</h2>
+
+    <div class="game-container">
+
+        <div class="game-box minecraft-card">
+            <img class="game-image" src="minecraft.jpg" alt="Minecraft">
+            <h3>Minecraft</h3>
+            <a class="game-button" href="https://www.minecraft.net/">Explore Game</a>
+        </div>
+
+        <div class="game-box gta-card">
+            <img class="game-image" src="gta.jpg" alt="GTA V">
+            <h3>GTA V</h3>
+            <a class="game-button" href="https://www.rockstargames.com/gta-v">Explore Game</a>
+        </div>
+
+        <div class="game-box valorant-card">
+            <img class="game-image" src="valorant.jpg" alt="Valorant">
+            <h3>Valorant</h3>
+            <a class="game-button" href="https://playvalorant.com/">Explore Game</a>
+        </div>
+
+        <div class="game-box gta6-card">
+            <img class="game-image" src="gta6.jpg" alt="GTA VI">
+            <h3>GTA VI</h3>
+            <a class="game-button" href="https://www.rockstargames.com/games/VI">Explore Game</a>
+        </div>
+
+        <div class="game-box farcry-card">
+            <img class="game-image" src="farcry3.jpg" alt="Far Cry 3">
+            <h3>Far Cry 3</h3>
+            <a class="game-button" href="https://www.ubisoft.com/">Explore Game</a>
+        </div>
+
+        <div class="game-box nfs-card">
+            <img class="game-image" src="nfs.jpg" alt="Need for Speed Most Wanted">
+            <h3>Need for Speed: Most Wanted</h3>
+            <a class="game-button" href="https://www.ea.com/games/need-for-speed">Explore Game</a>
+        </div>
+
+        <div class="game-box fifa-card">
+            <img class="game-image" src="fifa15.jpg" alt="FIFA 15">
+            <h3>FIFA 15</h3>
+            <a class="game-button" href="https://www.ea.com/games/ea-sports-fc">Explore Game</a>
+        </div>
+
+        <div class="game-box tomb-card">
+            <img class="game-image" src="tombraider.jpg" alt="Rise of the Tomb Raider">
+            <h3>Rise of the Tomb Raider</h3>
+            <a class="game-button" href="https://www.tombraider.com/">Explore Game</a>
+        </div>
+
+        <div class="game-box god-card">
+            <img class="game-image" src="god.jpg" alt="God of War Ragnarok">
+            <h3>God of War Ragnarok</h3>
+            <a class="game-button" href="https://www.playstation.com/">Explore Game</a>
+        </div>
+
+        <div class="game-box cs2-card">
+            <img class="game-image" src="cs2.jpg" alt="Counter-Strike 2">
+            <h3>Counter-Strike 2</h3>
+            <a class="game-button" href="https://www.counter-strike.net/cs2">Explore Game</a>
+        </div>
+
+    </div>
+
+    <footer class="info-bar" id="contact">
+        <span>🎮 Rishav Gaming World</span>
+
+        <a href="https://www.instagram.com/zenithx_rishav/"
+           target="_blank" rel="noopener noreferrer">
+            📸 @Zenithx_rishav
+        </a>
+
+        <a href="https://www.instagram.com/wtf_.rishu/?__pwa=1"
+           target="_blank" rel="noopener noreferrer">
+            📸 @wtf._rishu
+        </a>
+    </footer>
+
+</body>
+</html>
