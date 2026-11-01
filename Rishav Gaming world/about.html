@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Who Am I? | Rishav Gaming World</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)),
+                url("pexels-polina-tankilevitch-4522996.jpg");
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: #222;
+        }
+
+        /* Main glass profile panel */
+        .about-panel {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+
+            max-width: 850px;
+            width: 90%;
+            min-height: 380px;
+
+            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-radius: 18px;
+            overflow: hidden;
+
+            box-shadow:
+                0 0 25px rgba(0, 100, 255, 0.3),
+                0 15px 45px rgba(0, 0, 0, 0.3);
+
+            animation: panelEntrance 1s ease both,
+                       panelFloat 5s ease-in-out 1s infinite;
+        }
+
+        /* Left profile section */
+        .profile-left {
+            background: linear-gradient(145deg, #08b3c5, #0878d1);
+            color: white;
+
+            text-align: center;
+            padding: 35px 20px;
+
+            animation: leftEntrance 1.2s ease both;
+        }
+
+        /* Profile picture */
+        .profile-photo {
+            width: 130px;
+            height: 130px;
+
+            border-radius: 50%;
+            object-fit: cover;
+
+            border: 4px solid white;
+
+            margin-top: 10px;
+
+            box-shadow: 0 0 18px rgba(255, 255, 255, 0.7);
+
+            animation: photoEntrance 1.5s ease both;
+            transition: 0.4s ease;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 0 30px white;
+        }
+
+        .profile-left h2 {
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.7);
+        }
+
+        /* Right information section */
+        .profile-right {
+            padding: 40px 30px;
+
+            animation: rightEntrance 1.2s ease both;
+        }
+
+        .profile-right h1 {
+            font-size: 34px;
+            margin-top: 10px;
+            color: #0878d1;
+
+            text-shadow: 0 0 10px rgba(8, 120, 209, 0.2);
+        }
+
+        .profile-right p {
+            line-height: 1.7;
+            color: #444;
+        }
+
+        /* Instagram buttons */
+        .insta-button {
+            display: inline-block;
+
+            margin-top: 15px;
+            margin-right: 8px;
+
+            padding: 12px 22px;
+
+            border: 2px solid #168cff;
+            border-radius: 30px;
+
+            color: #0878d1;
+            text-decoration: none;
+            font-weight: bold;
+
+            transition: all 0.3s ease;
+        }
+
+        .insta-button:hover {
+            background: #0878d1;
+            color: white;
+
+            box-shadow: 0 0 18px #168cff;
+            transform: translateY(-5px);
+        }
+
+        /* Back to Menu button */
+        .back-menu {
+            position: fixed;
+            right: 30px;
+            bottom: 25px;
+
+            background: #0878d1;
+            color: white;
+
+            padding: 13px 22px;
+            border-radius: 30px;
+
+            text-decoration: none;
+            font-weight: bold;
+
+            box-shadow: 0 0 15px #168cff;
+
+            transition: all 0.3s ease;
+            animation: buttonEntrance 1.5s ease both;
+        }
+
+        .back-menu:hover {
+            background: #08b3c5;
+            transform: scale(1.08);
+            box-shadow: 0 0 25px #08b3c5;
+        }
+
+        /* Animations */
+        @keyframes panelEntrance {
+            from {
+                opacity: 0;
+                transform: scale(0.85);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes panelFloat {
+            0%, 100% {
+                translate: 0 0;
+            }
+
+            50% {
+                translate: 0 -7px;
+            }
+        }
+
+        @keyframes leftEntrance {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes rightEntrance {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes photoEntrance {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes buttonEntrance {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 600px) {
+            body {
+                padding: 25px 0 85px;
+            }
+
+            .about-panel {
+                grid-template-columns: 1fr;
+                width: 92%;
+            }
+
+            .profile-left {
+                padding: 25px 15px;
+            }
+
+            .profile-right {
+                padding: 25px 20px;
+            }
+
+            .profile-right h1 {
+                font-size: 28px;
+            }
+
+            .back-menu {
+                right: 15px;
+                bottom: 15px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    
+    /* Mobile-only Welcome Background */
+@media (max-width: 600px) {
+    body {
+        background-image:
+            linear-gradient(
+                rgba(5, 5, 15, 0.30),
+                rgba(5, 5, 15, 0.45)
+            ),
+            url("aboutbgmob.jpg");
+
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+
+    <div class="about-panel">
+
+        <div class="profile-left">
+
+            <img src="Rishav Gupta.jpg"
+                 class="profile-photo"
+                 alt="Rishav's profile photo">
+
+            <h2>Rishav Gupta</h2>
+
+            <p>Gamer | Programmer | Student</p>
+
+        </div>
+
+        <div class="profile-right">
+
+            <h1>About Me</h1>
+
+            <p>
+                Hey! I'm Rishav.
+                I love gaming, coding and exploring
+                new things. Welcome to my digital world!
+            </p>
+
+            <a class="insta-button"
+               href="https://www.instagram.com/zenithx_rishav/"
+               target="_blank"
+               rel="noopener noreferrer">
+                @zenithx_rishav
+            </a>
+
+            <a class="insta-button"
+               href="https://www.instagram.com/wtf_.rishu/?__pwa=1"
+               target="_blank"
+               rel="noopener noreferrer">
+                @wtf_.rishu
+            </a>
+
+        </div>
+
+    </div>
+
+    <a href="menu.html" class="back-menu">
+        ← BACK TO MENU
+    </a>
+
+</body>
+</html>
